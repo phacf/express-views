@@ -10,4 +10,8 @@ module.exports = class HomeController {
         return res.render('second')
     }
 
+    formSubmit(req, res, next) {
+        return 
+    }
+
 }

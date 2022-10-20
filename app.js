@@ -1,8 +1,13 @@
 const express = require('express');
 const path = require('path');
 
+//routes
 const { home } = require('./src/router/home')
+
+//middlewares
 const { homeMiddware } = require('./src/middlewares/homeMiddleware')
+const { globalMiddware } = require('./src/middlewares/globalMiddware')
+
 
 
 const app = express();
@@ -17,6 +22,7 @@ app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
 
 //routes config
+app.use(globalMiddware)
 app.use('/',homeMiddware, home);
 
 app.listen(5000, () => {

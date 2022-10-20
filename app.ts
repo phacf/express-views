@@ -1,18 +1,17 @@
-const express = require('express');
-const path = require('path');
-const config = require('./src/utils/config')
+import express from 'express';
+import path from 'path';
+import config from './src/utils/config';
 
 //database
-const Database = require('./src/models/db')
-const database = new Database()
+import Database from './src/models/db';
+const database = new Database();
 
 //routes
-const { home } = require('./src/router/home')
+import { router as home } from './src/router/home';
 
 //middlewares
-const { homeMiddware } = require('./src/middlewares/homeMiddleware')
-const { globalMiddware } = require('./src/middlewares/globalMiddware');
-const { connected } = require('process');
+import  homeMiddware from './src/middlewares/homeMiddleware';
+import globalMiddware from './src/middlewares/globalMiddware';
 
 const app = express();
 

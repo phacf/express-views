@@ -1,8 +1,8 @@
-const config = require('../utils/config');
-const { createConnection } = require('mongoose');
+import config from '../utils/config';
+import { createConnection } from 'mongoose';
 
 
-class Database{
+export default class Database{
     async mongoDbConnect() {
         const { user, password, name, host, protocol } = config.database
     
@@ -10,12 +10,9 @@ class Database{
         return createConnection(
             `${protocol}://${user}:${password}@${host}/${name}?retryWrites=true&w=majority`,
             {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
+                connectTimeoutMS: 1000
             }
         );
     };
 }
 
-
-module.exports = Database;

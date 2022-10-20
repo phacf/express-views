@@ -1,5 +1,5 @@
 import config from '../utils/config';
-import { createConnection } from 'mongoose';
+import { Connection, createConnection } from 'mongoose';
 
 
 export default class Database {
@@ -15,7 +15,7 @@ export default class Database {
         );
     };
 
-    static mongoEvents(mongoConnection: any) {
+    static mongoEvents(mongoConnection: Connection) {
 
         /**** 
                Connection ready state

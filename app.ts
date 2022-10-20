@@ -3,13 +3,13 @@ import path from 'path';
 import config from './src/utils/config';
 
 //database
-import Database from './src/models/database';
+import {DatabaseConnection} from './src/bin/connection'
 
 //routes
 import { router as home } from './src/router/home';
 
 //middlewares
-import  homeMiddware from './src/middlewares/homeMiddleware';
+import homeMiddware from './src/middlewares/homeMiddleware';
 import globalMiddware from './src/middlewares/globalMiddware';
 
 const app = express();
@@ -27,16 +27,10 @@ app.set('view engine', 'ejs');
 app.use(globalMiddware);
 app.use('/', homeMiddware, home);
 
+//start server
 app.listen(config.server.port, async () => {
     console.log(`running on: http://localhost:${config.server.port}/`);
-    try {
-        const mongoConnect = await Database.mongoDbConnect();
-       
-        Database.mongoEvents(mongoConnect);
-        
 
-    }
-    catch (error) {
-        console.error(error, 'Connection failed with database');
-    };
+    DatabaseConnection.mongo()
+    
 })

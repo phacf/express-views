@@ -17,5 +17,5 @@ app.set('view engine', 'ejs');
 app.use('/', home);
 
 app.listen(5000, () => {
-    console.log('listenning on port: 5000');
+    console.log('running on: http://localhost:5000/');
 })

@@ -5,13 +5,17 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "dev": "webpack -w"
+    "dev": "rm -rf public/assets/js/bundle.js && webpack -w"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "nodemonConfig":{
-    "ignore": ["public", "frontEnd", "node_modules"]
+  "nodemonConfig": {
+    "ignore": [
+      "public",
+      "frontEnd",
+      "node_modules"
+    ]
   },
   "dependencies": {
     "ejs": "^3.1.8",

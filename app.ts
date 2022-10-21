@@ -3,7 +3,6 @@ import path from 'path';
 import config from './src/utils/config';
 
 //database
-import {DatabaseConnection} from './src/bin/connection'
 
 //routes
 import { router as home } from './src/router/home';
@@ -30,7 +29,4 @@ app.use('/', homeMiddware, home);
 //start server
 app.listen(config.server.port, async () => {
     console.log(`running on: http://localhost:${config.server.port}/`);
-
-    DatabaseConnection.mongo()
-    
 })

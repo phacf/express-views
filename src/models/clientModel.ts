@@ -1,11 +1,9 @@
-import { Schema, model } from 'mongoose';
+import { Schema } from 'mongoose';
 import config from '../utils/config';
-import { databaseConnections } from '../bin/connection';
+import Database from './database';
+import mongoConnection from '../bin/connection';
 
-const mongo = databaseConnections.mongoGetConnection(config.database.mongo.name);
-
-
-
+const mongo = Database.mongoDbConnect(config.database.mongo);
 export interface ClientInterface {
     name: string;
     lastName: string;
@@ -16,4 +14,4 @@ const clientSchema = new Schema<ClientInterface>({
     lastName: { type: String, required: true }
 });
 
-export const clientModel = mongo?.model<ClientInterface>('Client', clientSchema);
+export const clientModel = mongoConnection.model<ClientInterface>('Client', clientSchema);

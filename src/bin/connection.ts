@@ -1,28 +1,40 @@
 import Database from '../models/database';
 import { Connection } from 'mongoose'
-import { ConnectionsManager } from './connectionsPool';
 import config from '../utils/config';
 
-export const databaseConnections = new ConnectionsManager();
+const mongoConnection: Connection = Database.mongoDbConnect(config.database.mongo);
 
-export class DatabaseConnection {
+/**** 
+         Connection ready state
 
+         0 = disconnected
+         1 = connected
+         2 = connecting
+         3 = disconnecting
+****/
 
-    static async mongo(): Promise<Connection | undefined> {
-        try {
-            const mongoConnect = await Database.mongoDbConnect(config.database.mongo);
+mongoConnection.on('connecting', () => {
 
-            Database.mongoEvents(mongoConnect);
+    console.log('Connection with Mongo database is on the way');
 
-            return mongoConnect
+});
 
-        }
-        catch (error) {
-            console.error(error, 'Connection with database failed');
-            return;
-        };
+mongoConnection.on('connected', () => {
 
-    }
+    console.log('Connection with Mongo database successfully established');
 
+});
 
-};
+mongoConnection.on('disconnecting', () => {
+
+    console.log('Connection with Mongo database instable');
+
+});
+
+mongoConnection.on('disconnected', () => {
+
+    console.log('Connection with Mongo database off');
+
+});
+
+export default mongoConnection;

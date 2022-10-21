@@ -17,23 +17,28 @@ export default class HomeController {
     async createClient(req: Request, res: Response, next: NextFunction) {
         const { name, lastName }: ClientInterface = req.body;
 
-        try {
-            const client = new clientModel({
-                name,
-                lastName
-            });
+        if (clientModel) {
+            try {
+                const client = new clientModel({
+                    name,
+                    lastName
+                });
 
-            await client.save();
+                await client.save();
 
-            return res.status(201).json({ client });
+                return res.status(201).json({ client });
 
+            }
+            catch (error) {
+                console.error('Failed to save client', error);
+                return res.status(500).json({ msg: error })
+            }
+
+            console.log()
+        }else{
+            console.error('Database Model Error');
         }
-        catch (error) {
-            console.error('Failed to save client', error);
-            return res.status(500).json({ msg: error })
-        }
 
-        console.log()
     }
 
 }

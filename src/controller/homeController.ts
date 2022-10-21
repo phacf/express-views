@@ -26,7 +26,9 @@ export default class HomeController {
 
                 await client.save();
 
-                return res.status(201).json({ client });
+                // res.status(201).json({client});
+
+                return res.render('index');
 
             }
             catch (error) {
@@ -34,7 +36,6 @@ export default class HomeController {
                 return res.status(500).json({ msg: error })
             }
 
-            console.log()
         }else{
             console.error('Database Model Error');
         }

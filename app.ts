@@ -30,3 +30,5 @@ app.use('/', homeMiddware, home);
 app.listen(config.server.port, async () => {
     console.log(`running on: http://localhost:${config.server.port}/`);
 })
+
+//docker run -d -e MONGO_INITDB_ROOT_USERNAME=pol -e MONGO_INITDB_ROOT_PASSWORD=12345678 -p 8000:27017 --name=Mongo -v MongoDb:/db mongo

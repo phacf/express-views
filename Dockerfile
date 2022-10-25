@@ -17,3 +17,9 @@ COPY --chown=node:node . .
 EXPOSE ${SERVER_PORT}
 
 CMD ["npm", "start"]
+
+#docker run -d -e MONGO_INITDB_ROOT_USERNAME=pol -e MONGO_INITDB_ROOT_PASSWORD=12345678 -p 8000:27017 --name=Mongo -v MongoDb:/db mongo
+
+#docker build -t express_view .
+
+#docker run -d --name express_view -p 4000:5000 express_view

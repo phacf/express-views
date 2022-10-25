@@ -14,6 +14,8 @@ RUN npm i
 
 COPY --chown=node:node . .
 
+RUN npm run dev
+
 EXPOSE ${SERVER_PORT}
 
 CMD ["npm", "start"]

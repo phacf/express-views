@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec ts-node app.ts",
-    "dev": "rm -rf public/assets/js/bundle.js && webpack -w"
+    "dev": "rm -rf public/assets/js/bundle.js && webpack"
   },
   "keywords": [],
   "author": "",
